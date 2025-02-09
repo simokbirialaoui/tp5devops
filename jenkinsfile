@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/simokbirialaoui/tp5devops'
+        git branch: 'main', url: 'https://github.com/simokbirialaoui/tp5devops'
       }
     }
     stage('Building image') {
