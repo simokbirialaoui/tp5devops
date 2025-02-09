@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "kelguemmat/tp4"
+    registry = "simokbirialaoui/devops"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -8,20 +8,13 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/kelguemmat/tp4master21-22'
+        git 'https://github.com/simokbirialaoui/tp5devops'
       }
     }
     stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-stage('Test image') {
-        steps{
-        script {
-                    echo "Tests passed"
         }
       }
     }
@@ -32,11 +25,6 @@ stage('Test image') {
             dockerImage.push()
           }
         }
-      }
-    }
-        stage('Deploy image') {
-      steps{
-        bat "docker run -d $registry:$BUILD_NUMBER"
       }
     }
   }
