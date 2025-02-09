@@ -35,5 +35,11 @@ pipeline {
         }
       }
     }
+           stage('Deploy image') {
+            steps {
+                bat "docker run -d $registry:$BUILD_NUMBER" // Déploie l'image avec le numéro de build
+            }
+        }
+
   }
 }
